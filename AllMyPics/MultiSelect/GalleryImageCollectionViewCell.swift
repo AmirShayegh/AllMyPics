@@ -21,7 +21,7 @@ class GalleryImageCollectionViewCell: UICollectionViewCell {
 
     var cellSelected: Bool = false {
         didSet {
-            style()
+            if cellSelected {select()} else {deSelect()}
         }
     }
 
@@ -32,7 +32,6 @@ class GalleryImageCollectionViewCell: UICollectionViewCell {
 
     func style() {
         isSelectedView.layer.cornerRadius = isSelectedView.frame.height/2
-        if cellSelected {select()} else {deSelect()}
         container.layer.borderColor = container.backgroundColor?.cgColor
         container.layer.borderWidth = 2
         container.layer.cornerRadius = 5
@@ -56,18 +55,27 @@ class GalleryImageCollectionViewCell: UICollectionViewCell {
         cellSelected = true
     }
 
-    func setUp(selectedIndexes: [Int], indexPath: IndexPath) {
+    func setUp(selectedIndexes: [Int], indexPath: IndexPath, phAsset: PHAsset) {
         self.deSelect()
         self.isSelectedLabel.text = ""
         if selectedIndexes.contains(indexPath.row) {
             if let index = selectedIndexes.index(of: indexPath.row) {
                 selectCell(index: index)
-                self.select()
             }
         }
+
+        setImageFrom(phAsset: phAsset)
     }
 
     func hasImage() -> Bool{
         return imageView.image != nil
+    }
+
+    func setImageFrom(phAsset: PHAsset) {
+        AssetManager.sharedInstance.phManager?.requestImage(for: phAsset, targetSize: AssetManager.sharedInstance.getThumbnailSize(), contentMode: .aspectFit, options:  AssetManager.sharedInstance.getPHImageRequestOptions(), resultHandler: { (image, info) in
+            if let image = image {
+                self.imageView.image = image
+            }
+        })
     }
 }

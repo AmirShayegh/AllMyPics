@@ -12,69 +12,43 @@ import UIKit
 
 class AssetManager {
 
-    static  func getAssetImage(asset: PHAsset, size: CGSize = CGSize.zero, completion: @escaping((UIImage?) -> Void)) {
-        let manager = PHImageManager.default()
-        let option = PHImageRequestOptions()
-        option.isSynchronous = false
+    static let sharedInstance = AssetManager()
 
-        var assetImage: UIImage!
-        var scaleSize = size
-        if size == CGSize.zero {
-            scaleSize = getAssetSize(asset: asset)
-        }
+    let phManager: PHCachingImageManager?
 
-        manager.requestImage(for: asset, targetSize: scaleSize, contentMode: .aspectFill, options: option) { (image, nil) in
-            if let image = image {
-                completion(image)
-            } else {
-                manager.requestImageData(for: asset, options: option, resultHandler: { (data, _, orientation, _) in
-                    if let data = data {
-                        if let image = UIImage.init(data: data) {
-                            completion(image)
-                        }
-                    } else {
-                        completion(nil)
-                    }
-                })
+    private init() {
+        phManager = PHCachingImageManager()
+    }
+
+    func getThumbnailSize() -> CGSize {
+        return CGSize(width: 150, height: 150)
+    }
+
+    func getPHImageRequestOptions() -> PHImageRequestOptions {
+        let options = PHImageRequestOptions()
+        options.isSynchronous = false
+        options.deliveryMode = .opportunistic
+        return options
+    }
+
+    func getPHAssetImages() -> [PHAsset] {
+        var phCache = [PHAsset]()
+        let options = PHFetchOptions()
+        options.includeHiddenAssets = false
+        let phassets = PHAsset.fetchAssets(with: .image, options: options)
+        phassets.enumerateObjects { (asset, count, stop) in
+            phCache.append(asset)
+            if phCache.count == phassets.count {
+                phCache.reverse()
             }
         }
+        return phCache
     }
 
-    static func getAssetSize(asset: PHAsset) -> CGSize {
-        return CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
-    }
-
-    static func getAssetSizeForCell(asset: PHAsset, cellSize: CGSize) -> CGSize {
-        let assetSize = getAssetSize(asset: asset)
-
-        return assetSize
-        let cellW = cellSize.width
-        let cellH = cellSize.height
-
-        let assetW = assetSize.width
-        let assetH = assetSize.height
-
-        var newW: CGFloat = 0
-        var newH: CGFloat = 0
-
-        // if image size is smaller than cell size (very unusual)
-        // return the asset size
-        if cellH > assetH {
-            return assetSize
-        }
-
-        // if horizontal
-        if assetW > assetH {
-            newW = cellW
-            newH = newW * assetH / assetW
-            print("got \(newH) from \(assetSize.height)")
-            return CGSize(width: newW, height: newH)
-        // if vertical
-        } else {
-            newH = cellH
-            newW = newH * assetW / assetH
-            print("got \(newH) from \(assetSize.height)")
-            return CGSize(width: newW, height: newH)
-        }
+    func cacheImages() {
+        let options = PHImageRequestOptions()
+        options.isSynchronous = false
+        options.deliveryMode = .opportunistic
+        phManager?.startCachingImages(for: getPHAssetImages(), targetSize: getThumbnailSize(), contentMode: .aspectFit, options: options)
     }
 }

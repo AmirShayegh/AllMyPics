@@ -12,6 +12,11 @@
 		2992D0551FE3504A0008C7CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2992D0531FE3504A0008C7CD /* Main.storyboard */; };
 		2992D0571FE3504A0008C7CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2992D0561FE3504A0008C7CD /* Assets.xcassets */; };
 		2992D05A1FE3504A0008C7CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2992D0581FE3504A0008C7CD /* LaunchScreen.storyboard */; };
+		2992D0681FE350860008C7CD /* ChooseImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2992D0621FE350860008C7CD /* ChooseImageViewController.swift */; };
+		2992D0691FE350860008C7CD /* GalleryImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2992D0631FE350860008C7CD /* GalleryImageCollectionViewCell.swift */; };
+		2992D06A1FE350860008C7CD /* ChooseImage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2992D0641FE350860008C7CD /* ChooseImage.storyboard */; };
+		2992D06B1FE350860008C7CD /* GalleryImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2992D0651FE350860008C7CD /* GalleryImageCollectionViewCell.xib */; };
+		2992D06D1FE350860008C7CD /* AssetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2992D0671FE350860008C7CD /* AssetManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		2992D0561FE3504A0008C7CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2992D0591FE3504A0008C7CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2992D05B1FE3504A0008C7CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2992D0621FE350860008C7CD /* ChooseImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseImageViewController.swift; sourceTree = "<group>"; };
+		2992D0631FE350860008C7CD /* GalleryImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		2992D0641FE350860008C7CD /* ChooseImage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChooseImage.storyboard; sourceTree = "<group>"; };
+		2992D0651FE350860008C7CD /* GalleryImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		2992D0671FE350860008C7CD /* AssetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +64,7 @@
 		2992D04E1FE3504A0008C7CD /* AllMyPics */ = {
 			isa = PBXGroup;
 			children = (
+				2992D0611FE350740008C7CD /* MultiSelect */,
 				2992D04F1FE3504A0008C7CD /* AppDelegate.swift */,
 				2992D0511FE3504A0008C7CD /* ViewController.swift */,
 				2992D0531FE3504A0008C7CD /* Main.storyboard */,
@@ -62,6 +73,18 @@
 				2992D05B1FE3504A0008C7CD /* Info.plist */,
 			);
 			path = AllMyPics;
+			sourceTree = "<group>";
+		};
+		2992D0611FE350740008C7CD /* MultiSelect */ = {
+			isa = PBXGroup;
+			children = (
+				2992D0671FE350860008C7CD /* AssetManager.swift */,
+				2992D0641FE350860008C7CD /* ChooseImage.storyboard */,
+				2992D0621FE350860008C7CD /* ChooseImageViewController.swift */,
+				2992D0631FE350860008C7CD /* GalleryImageCollectionViewCell.swift */,
+				2992D0651FE350860008C7CD /* GalleryImageCollectionViewCell.xib */,
+			);
+			path = MultiSelect;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,8 +147,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2992D05A1FE3504A0008C7CD /* LaunchScreen.storyboard in Resources */,
+				2992D06A1FE350860008C7CD /* ChooseImage.storyboard in Resources */,
 				2992D0571FE3504A0008C7CD /* Assets.xcassets in Resources */,
 				2992D0551FE3504A0008C7CD /* Main.storyboard in Resources */,
+				2992D06B1FE350860008C7CD /* GalleryImageCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +162,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2992D0521FE3504A0008C7CD /* ViewController.swift in Sources */,
+				2992D0691FE350860008C7CD /* GalleryImageCollectionViewCell.swift in Sources */,
 				2992D0501FE3504A0008C7CD /* AppDelegate.swift in Sources */,
+				2992D06D1FE350860008C7CD /* AssetManager.swift in Sources */,
+				2992D0681FE350860008C7CD /* ChooseImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +305,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MAW84PUNHD;
 				INFOPLIST_FILE = AllMyPics/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ignitedcodes.AllMyPics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -292,6 +321,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MAW84PUNHD;
 				INFOPLIST_FILE = AllMyPics/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ignitedcodes.AllMyPics;
 				PRODUCT_NAME = "$(TARGET_NAME)";

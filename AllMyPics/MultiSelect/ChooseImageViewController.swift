@@ -23,7 +23,8 @@ class ChooseImageViewController: UIViewController {
 
     var images = [PHAsset]()
     var selectedIndexs = [Int]()
-    var cachedImages = [Int: UIImage]()
+
+    let phManager = PHCachingImageManager()
 
     let cellReuseIdentifier = "GalleryImageCell"
     let cellXibName = "GalleryImageCollectionViewCell"
@@ -33,12 +34,12 @@ class ChooseImageViewController: UIViewController {
         lockdown()
         style()
         setUpCollectionView()
+        self.images = AssetManager.sharedInstance.getPHAssetImages()
         NotificationCenter.default.addObserver(self, selector: #selector(sent), name: .selectedImages, object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setData()
         unlock()
     }
 
@@ -52,6 +53,8 @@ class ChooseImageViewController: UIViewController {
         unlock()
         closeVC()
     }
+
+    @objc func sent() { print("sent back") }
 
     @IBAction func addImages(_ sender: Any) {
         if selectedIndexs.count == 0 {
@@ -75,8 +78,6 @@ class ChooseImageViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
-    @objc func sent() { print("sent back") }
-
     func lockdown() {
         self.loading.startAnimating()
         self.addButton.isUserInteractionEnabled = false
@@ -95,33 +96,8 @@ class ChooseImageViewController: UIViewController {
         collectionView.isUserInteractionEnabled = true
     }
 
-    func setData() {
-        getImages()
-    }
-
-    func getImages() {
-        let options = PHFetchOptions()
-        options.includeHiddenAssets = false
-        self.images.removeAll()
-        let assets = PHAsset.fetchAssets(with: .image, options: options)
-        assets.enumerateObjects { (asset, count, stop) in
-            self.images.append(asset)
-            if self.images.count == assets.count {
-                self.images.reverse()
-                self.collectionView.reloadData()
-            }
-        }
-        self.collectionView.reloadData()
-        let options2 = PHImageRequestOptions()
-        options2.isSynchronous = false
-        options2.deliveryMode = .opportunistic
-        let manager = PHCachingImageManager()
-        let size = CGSize(width: images[0].pixelWidth, height: images[0].pixelHeight)
-        manager.startCachingImages(for: images, targetSize: size, contentMode: .aspectFit, options: options2)
-    }
-
     func reloadCellsOfInterest(indexPath: IndexPath) {
-        var indexes = self.selectedIndexs.map { (value) -> IndexPath in
+        let indexes = self.selectedIndexs.map { (value) -> IndexPath in
             return IndexPath(row: value, section: 0)
         }
         if indexes.contains(indexPath) {
@@ -144,9 +120,12 @@ extension ChooseImageViewController: UICollectionViewDelegate, UICollectionViewD
         collectionView.dataSource = self
 
         collectionView.register(UINib(nibName: cellXibName, bundle: nil), forCellWithReuseIdentifier: cellReuseIdentifier)
+
+        // set size of cells
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
+
         layout.itemSize = getCellSize()
     }
 
@@ -157,32 +136,7 @@ extension ChooseImageViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : GalleryImageCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! GalleryImageCollectionViewCell
 
-        if let image = cachedImages[indexPath.row] {
-            cell.imageView.image = image
-        } else {
-            let tag = indexPath.row
-            let asset = images[indexPath.row]
-            let options = PHImageRequestOptions()
-            options.isSynchronous = false
-            options.deliveryMode = .opportunistic
-//            let assetSize = AssetManager.getAssetSizeForCell(asset: asset, cellSize: getCellSize())
-            let assetSize = CGSize(width: images[0].pixelWidth, height: images[0].pixelHeight)
-            let manager = PHCachingImageManager()
-            manager.requestImage(for: asset, targetSize: assetSize, contentMode: .aspectFit, options: options, resultHandler: { (image, info) in
-                if let image = image {
-                    cell.imageView.image = image
-                    self.cachedImages.updateValue(image, forKey: tag)
-                }
-            })
-//            PHImageManager.default().requestImage(for: asset, targetSize: assetSize, contentMode: .aspectFit, options: options, resultHandler: { (image, info) in
-//                if let image = image {
-//                    cell.imageView.image = image
-//                    self.cachedImages.updateValue(image, forKey: tag)
-//                }
-//            })
-        }
-
-        cell.setUp(selectedIndexes: selectedIndexs, indexPath: indexPath)
+        cell.setUp(selectedIndexes: selectedIndexs, indexPath: indexPath, phAsset: images[indexPath.row])
 
         return cell
     }

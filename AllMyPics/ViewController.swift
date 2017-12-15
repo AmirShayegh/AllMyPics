@@ -7,19 +7,27 @@
 //
 
 import UIKit
+import Photos
 
 class ViewController: UIViewController {
+    lazy var galleryVC: ChooseImageViewController = {
+        let storyboard = UIStoryboard(name: "ChooseImage", bundle: Bundle.main)
+        return storyboard.instantiateViewController(withIdentifier: "ChooseImage") as! ChooseImageViewController
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        NotificationCenter.default.addObserver(forName: .selectedImages, object: nil, queue: nil, using:catchSelectedImages)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func catchSelectedImages(notification:Notification) -> Void {
+        let phAssets: [PHAsset] = (notification.userInfo!["name"] as! [PHAsset])
+        print("got back \(phAssets.count) images")
     }
-
+    
+    @IBAction func goToChoose(_ sender: Any) {
+        self.present(galleryVC, animated: true, completion: nil)
+    }
 
 }
 
