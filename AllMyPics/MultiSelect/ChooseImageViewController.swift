@@ -31,9 +31,10 @@ class ChooseImageViewController: UIViewController {
         super.viewDidLoad()
         lockdown()
         style()
+        loadData()
         setUpCollectionView()
-        self.images = AssetManager.sharedInstance.getPHAssetImages()
         NotificationCenter.default.addObserver(self, selector: #selector(sent), name: .selectedImages, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -52,7 +53,13 @@ class ChooseImageViewController: UIViewController {
         closeVC()
     }
 
-    @objc func sent() { print("sent back") }
+    @objc func sent() {}
+
+    @objc func appWillEnterForeground() {
+        if self.images.count != AssetManager.sharedInstance.getPHAssetImages().count {
+            reloadData()
+        }
+    }
 
     @IBAction func addImages(_ sender: Any) {
         if selectedIndexs.count == 0 {
@@ -112,6 +119,15 @@ class ChooseImageViewController: UIViewController {
 }
 
 extension ChooseImageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+
+    func reloadData() {
+        self.selectedIndexs.removeAll()
+        loadData()
+    }
+    func loadData() {
+        self.images = AssetManager.sharedInstance.getPHAssetImages()
+        self.collectionView.reloadData()
+    }
 
     func setUpCollectionView() {
         self.collectionView.delegate = self
