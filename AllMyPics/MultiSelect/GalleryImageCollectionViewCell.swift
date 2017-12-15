@@ -58,28 +58,15 @@ class GalleryImageCollectionViewCell: UICollectionViewCell {
     func setUp(selectedIndexes: [Int], indexPath: IndexPath, phAsset: PHAsset) {
         self.deSelect()
         self.isSelectedLabel.text = ""
+        
         if selectedIndexes.contains(indexPath.row) {
             if let index = selectedIndexes.index(of: indexPath.row) {
                 selectCell(index: index)
             }
         }
 
-        setImageFrom(phAsset: phAsset)
-    }
-
-    func hasImage() -> Bool{
-        return imageView.image != nil
-    }
-
-    func setImageFrom(phAsset: PHAsset) {
-        AssetManager.sharedInstance.phManager?.requestImage(for: phAsset,
-                                                            targetSize: AssetManager.sharedInstance.getThumbnailSize(),
-                                                            contentMode: .aspectFit,
-                                                            options:  AssetManager.sharedInstance.getPHImageRequestOptions(),
-                                                            resultHandler: { (image, info) in
-            if let image = image {
-                self.imageView.image = image
-            }
-        })
+        AssetManager.sharedInstance.getImageFromAsset(phAsset: phAsset) { (assetImage) in
+            self.imageView.image = assetImage
+        }
     }
 }

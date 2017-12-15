@@ -48,4 +48,19 @@ class AssetManager {
     func cacheImages() {
         phManager?.startCachingImages(for: getPHAssetImages(), targetSize: getThumbnailSize(), contentMode: .aspectFit, options: getPHImageRequestOptions())
     }
+
+    func getImageFromAsset(phAsset: PHAsset, completion: @escaping (_ assetImage: UIImage) -> Void) {
+        AssetManager.sharedInstance.phManager?.requestImage(for: phAsset,
+                                                            targetSize: AssetManager.sharedInstance.getThumbnailSize(),
+                                                            contentMode: .aspectFit,
+                                                            options:  AssetManager.sharedInstance.getPHImageRequestOptions(),
+                                                            resultHandler: { (image, info) in
+                                                                if let image = image {
+                                                                    DispatchQueue.main.async {
+                                                                        completion(image)
+
+                                                                    }
+                                                                }
+        })
+    }
 }
