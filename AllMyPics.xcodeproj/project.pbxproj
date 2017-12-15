@@ -17,6 +17,8 @@
 		2992D06A1FE350860008C7CD /* ChooseImage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2992D0641FE350860008C7CD /* ChooseImage.storyboard */; };
 		2992D06B1FE350860008C7CD /* GalleryImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2992D0651FE350860008C7CD /* GalleryImageCollectionViewCell.xib */; };
 		2992D06D1FE350860008C7CD /* AssetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2992D0671FE350860008C7CD /* AssetManager.swift */; };
+		29FF3BCB1FE47FCF004A79AD /* RecultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF3BC91FE47FCF004A79AD /* RecultCollectionViewCell.swift */; };
+		29FF3BCC1FE47FCF004A79AD /* RecultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29FF3BCA1FE47FCF004A79AD /* RecultCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		2992D0641FE350860008C7CD /* ChooseImage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChooseImage.storyboard; sourceTree = "<group>"; };
 		2992D0651FE350860008C7CD /* GalleryImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		2992D0671FE350860008C7CD /* AssetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetManager.swift; sourceTree = "<group>"; };
+		29FF3BC91FE47FCF004A79AD /* RecultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecultCollectionViewCell.swift; sourceTree = "<group>"; };
+		29FF3BCA1FE47FCF004A79AD /* RecultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecultCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,8 @@
 				2992D0561FE3504A0008C7CD /* Assets.xcassets */,
 				2992D0581FE3504A0008C7CD /* LaunchScreen.storyboard */,
 				2992D05B1FE3504A0008C7CD /* Info.plist */,
+				29FF3BC91FE47FCF004A79AD /* RecultCollectionViewCell.swift */,
+				29FF3BCA1FE47FCF004A79AD /* RecultCollectionViewCell.xib */,
 			);
 			path = AllMyPics;
 			sourceTree = "<group>";
@@ -149,6 +155,7 @@
 				2992D05A1FE3504A0008C7CD /* LaunchScreen.storyboard in Resources */,
 				2992D06A1FE350860008C7CD /* ChooseImage.storyboard in Resources */,
 				2992D0571FE3504A0008C7CD /* Assets.xcassets in Resources */,
+				29FF3BCC1FE47FCF004A79AD /* RecultCollectionViewCell.xib in Resources */,
 				2992D0551FE3504A0008C7CD /* Main.storyboard in Resources */,
 				2992D06B1FE350860008C7CD /* GalleryImageCollectionViewCell.xib in Resources */,
 			);
@@ -164,6 +171,7 @@
 				2992D0521FE3504A0008C7CD /* ViewController.swift in Sources */,
 				2992D0691FE350860008C7CD /* GalleryImageCollectionViewCell.swift in Sources */,
 				2992D0501FE3504A0008C7CD /* AppDelegate.swift in Sources */,
+				29FF3BCB1FE47FCF004A79AD /* RecultCollectionViewCell.swift in Sources */,
 				2992D06D1FE350860008C7CD /* AssetManager.swift in Sources */,
 				2992D0681FE350860008C7CD /* ChooseImageViewController.swift in Sources */,
 			);
