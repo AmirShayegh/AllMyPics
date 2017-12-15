@@ -51,7 +51,7 @@ class GalleryImageCollectionViewCell: UICollectionViewCell {
     }
 
     func selectCell(index: Int) {
-        self.isSelectedLabel.text = "\(index)"
+        self.isSelectedLabel.text = "\(index + 1)"
         cellSelected = true
     }
 
