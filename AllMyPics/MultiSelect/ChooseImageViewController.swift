@@ -14,8 +14,8 @@ extension Notification.Name {
 }
 
 class ChooseImageViewController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
 
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var loadingContainer: UIView!
     @IBOutlet weak var cancelButton: UIButton!
@@ -23,8 +23,6 @@ class ChooseImageViewController: UIViewController {
 
     var images = [PHAsset]()
     var selectedIndexs = [Int]()
-
-    let phManager = PHCachingImageManager()
 
     let cellReuseIdentifier = "GalleryImageCell"
     let cellXibName = "GalleryImageCollectionViewCell"
@@ -60,7 +58,7 @@ class ChooseImageViewController: UIViewController {
         if selectedIndexs.count == 0 {
             closeVC()
         }
-        self.lockdown()
+        lockdown()
         var selectedImages = [PHAsset]()
         for index in selectedIndexs {
             selectedImages.append(images[index])
@@ -84,7 +82,7 @@ class ChooseImageViewController: UIViewController {
         self.cancelButton.isUserInteractionEnabled = false
         self.loading.isHidden = false
         self.loadingContainer.isHidden = false
-        collectionView.isUserInteractionEnabled = false
+        self.collectionView.isUserInteractionEnabled = false
     }
 
     func unlock() {
@@ -93,7 +91,7 @@ class ChooseImageViewController: UIViewController {
         self.cancelButton.isUserInteractionEnabled = true
         self.loading.isHidden = true
         self.loadingContainer.isHidden = true
-        collectionView.isUserInteractionEnabled = true
+        self.collectionView.isUserInteractionEnabled = true
     }
 
     func reloadCellsOfInterest(indexPath: IndexPath) {
@@ -101,10 +99,10 @@ class ChooseImageViewController: UIViewController {
             return IndexPath(row: value, section: 0)
         }
         if indexes.contains(indexPath) {
-            collectionView.reloadItems(at: indexes)
+            self.collectionView.reloadItems(at: indexes)
         } else {
-            collectionView.reloadItems(at: indexes)
-            collectionView.reloadItems(at: [indexPath])
+            self.collectionView.reloadItems(at: indexes)
+            self.collectionView.reloadItems(at: [indexPath])
         }
     }
 
@@ -116,13 +114,13 @@ class ChooseImageViewController: UIViewController {
 extension ChooseImageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func setUpCollectionView() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
 
-        collectionView.register(UINib(nibName: cellXibName, bundle: nil), forCellWithReuseIdentifier: cellReuseIdentifier)
+        self.collectionView.register(UINib(nibName: cellXibName, bundle: nil), forCellWithReuseIdentifier: cellReuseIdentifier)
 
         // set size of cells
-        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+        guard let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
 

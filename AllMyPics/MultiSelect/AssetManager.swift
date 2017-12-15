@@ -46,9 +46,6 @@ class AssetManager {
     }
 
     func cacheImages() {
-        let options = PHImageRequestOptions()
-        options.isSynchronous = false
-        options.deliveryMode = .opportunistic
-        phManager?.startCachingImages(for: getPHAssetImages(), targetSize: getThumbnailSize(), contentMode: .aspectFit, options: options)
+        phManager?.startCachingImages(for: getPHAssetImages(), targetSize: getThumbnailSize(), contentMode: .aspectFit, options: getPHImageRequestOptions())
     }
 }

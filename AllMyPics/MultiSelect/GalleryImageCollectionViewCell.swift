@@ -72,7 +72,11 @@ class GalleryImageCollectionViewCell: UICollectionViewCell {
     }
 
     func setImageFrom(phAsset: PHAsset) {
-        AssetManager.sharedInstance.phManager?.requestImage(for: phAsset, targetSize: AssetManager.sharedInstance.getThumbnailSize(), contentMode: .aspectFit, options:  AssetManager.sharedInstance.getPHImageRequestOptions(), resultHandler: { (image, info) in
+        AssetManager.sharedInstance.phManager?.requestImage(for: phAsset,
+                                                            targetSize: AssetManager.sharedInstance.getThumbnailSize(),
+                                                            contentMode: .aspectFit,
+                                                            options:  AssetManager.sharedInstance.getPHImageRequestOptions(),
+                                                            resultHandler: { (image, info) in
             if let image = image {
                 self.imageView.image = image
             }
