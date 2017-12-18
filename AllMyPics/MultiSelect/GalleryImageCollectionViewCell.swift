@@ -11,8 +11,6 @@ import Photos
 
 class GalleryImageCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var picFrame: UIView!
-    @IBOutlet weak var container: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var isSelectedLabel: UILabel!
     @IBOutlet weak var isSelectedView: UIView!
@@ -27,17 +25,6 @@ class GalleryImageCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        style()
-    }
-
-    func style() {
-        isSelectedView.layer.cornerRadius = isSelectedView.frame.height/2
-        container.layer.borderColor = container.backgroundColor?.cgColor
-        container.layer.borderWidth = 2
-        container.layer.cornerRadius = 5
-        picFrame.layer.borderWidth = 2
-        picFrame.layer.borderColor = container.backgroundColor?.cgColor
-        picFrame.layer.cornerRadius = 5
     }
 
     func select() {
@@ -55,7 +42,9 @@ class GalleryImageCollectionViewCell: UICollectionViewCell {
         cellSelected = true
     }
 
-    func setUp(selectedIndexes: [Int], indexPath: IndexPath, phAsset: PHAsset) {
+    func setUp(selectedIndexes: [Int], indexPath: IndexPath, phAsset: PHAsset, primaryColor: UIColor, textColor: UIColor) {
+        style(primaryColor: primaryColor, textColor: textColor)
+        self.cellSelected = false
         self.deSelect()
         self.isSelectedLabel.text = ""
         
@@ -68,5 +57,15 @@ class GalleryImageCollectionViewCell: UICollectionViewCell {
         AssetManager.sharedInstance.getImageFromAsset(phAsset: phAsset) { (assetImage) in
             self.imageView.image = assetImage
         }
+    }
+
+    func style(primaryColor: UIColor, textColor: UIColor) {
+        isSelectedView.backgroundColor = primaryColor
+        isSelectedLabel.textColor = textColor
+        isSelectedLabel.alpha = 0.8
+        isSelectedView.layer.cornerRadius = isSelectedView.frame.height/2
+        imageView.layer.borderColor = primaryColor.cgColor
+        imageView.layer.borderWidth = 2
+        imageView.layer.cornerRadius = 5
     }
 }

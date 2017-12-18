@@ -12,28 +12,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryImageCell" id="gTV-IL-0wX" customClass="GalleryImageCollectionViewCell" customModule="imageMultiSelect" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryImageCell" id="gTV-IL-0wX" customClass="GalleryImageCollectionViewCell" customModule="AllMyPics" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="289" height="257"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="289" height="257"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Xjb-Iy-bbc">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4ry-te-B1C">
                         <rect key="frame" x="0.0" y="0.0" width="289" height="257"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4ry-te-B1C">
-                                <rect key="frame" x="5" y="5" width="279" height="247"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.88634115459999996" green="0.65973711010000002" blue="0.1661667526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="4ry-te-B1C" secondAttribute="trailing" constant="5" id="1Yt-I8-uE9"/>
-                            <constraint firstItem="4ry-te-B1C" firstAttribute="top" secondItem="Xjb-Iy-bbc" secondAttribute="top" constant="5" id="EBC-Sm-MJp"/>
-                            <constraint firstAttribute="bottom" secondItem="4ry-te-B1C" secondAttribute="bottom" constant="5" id="pR2-h1-Tso"/>
-                            <constraint firstItem="4ry-te-B1C" firstAttribute="leading" secondItem="Xjb-Iy-bbc" secondAttribute="leading" constant="5" id="sfJ-P5-bEx"/>
-                        </constraints>
-                    </view>
+                    </imageView>
                     <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PHl-5o-rsG">
                         <rect key="frame" x="129.5" y="113.5" width="30" height="30"/>
                         <subviews>
@@ -54,31 +42,22 @@
                             <constraint firstAttribute="trailing" secondItem="34u-R3-mAQ" secondAttribute="trailing" id="f1g-VX-Qic"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ng5-sA-fLn">
-                        <rect key="frame" x="0.0" y="0.0" width="289" height="257"/>
-                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="ng5-sA-fLn" firstAttribute="trailing" secondItem="Xjb-Iy-bbc" secondAttribute="trailing" id="0YF-dO-grB"/>
-                <constraint firstItem="Xjb-Iy-bbc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2wS-io-WVP"/>
+                <constraint firstItem="4ry-te-B1C" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="1VH-TW-Lfb"/>
                 <constraint firstItem="PHl-5o-rsG" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="5px-95-snP"/>
-                <constraint firstAttribute="trailing" secondItem="Xjb-Iy-bbc" secondAttribute="trailing" id="8fh-oF-Yoy"/>
-                <constraint firstItem="ng5-sA-fLn" firstAttribute="bottom" secondItem="Xjb-Iy-bbc" secondAttribute="bottom" id="DXq-Qu-Zq8"/>
-                <constraint firstItem="ng5-sA-fLn" firstAttribute="top" secondItem="Xjb-Iy-bbc" secondAttribute="top" id="Ej6-HF-7Vf"/>
-                <constraint firstItem="Xjb-Iy-bbc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="RJh-NL-6H5"/>
-                <constraint firstItem="ng5-sA-fLn" firstAttribute="leading" secondItem="Xjb-Iy-bbc" secondAttribute="leading" id="elI-yh-GA2"/>
-                <constraint firstAttribute="bottom" secondItem="Xjb-Iy-bbc" secondAttribute="bottom" id="f1A-iX-rQu"/>
+                <constraint firstItem="4ry-te-B1C" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="9Sl-Zm-HMc"/>
+                <constraint firstAttribute="trailing" secondItem="4ry-te-B1C" secondAttribute="trailing" id="ETi-cG-x7u"/>
+                <constraint firstAttribute="bottom" secondItem="4ry-te-B1C" secondAttribute="bottom" id="M6w-K6-g4L"/>
                 <constraint firstItem="PHl-5o-rsG" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="vwh-Dn-fPY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="289" height="257"/>
             <connections>
-                <outlet property="container" destination="Xjb-Iy-bbc" id="03W-cR-9rd"/>
                 <outlet property="imageView" destination="4ry-te-B1C" id="iIG-Se-NEP"/>
                 <outlet property="isSelectedLabel" destination="34u-R3-mAQ" id="yhF-aD-MZt"/>
                 <outlet property="isSelectedView" destination="PHl-5o-rsG" id="c2Q-XP-Jwk"/>
-                <outlet property="picFrame" destination="ng5-sA-fLn" id="4nr-tQ-tIP"/>
             </connections>
             <point key="canvasLocation" x="-186.5" y="-52.5"/>
         </collectionViewCell>

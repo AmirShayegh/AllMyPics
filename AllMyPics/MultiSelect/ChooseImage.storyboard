@@ -13,7 +13,7 @@
         <!--Choose Image View Controller-->
         <scene sceneID="hLI-ie-6Ub">
             <objects>
-                <viewController storyboardIdentifier="ChooseImage" id="1y8-pF-qsb" customClass="ChooseImageViewController" customModule="imageMultiSelect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChooseImage" id="1y8-pF-qsb" customClass="ChooseImageViewController" customModule="AllMyPics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="26N-OA-6pU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,8 +114,10 @@
                         <outlet property="addButton" destination="bAW-Wc-hG5" id="v9j-lV-31c"/>
                         <outlet property="cancelButton" destination="Xas-Kb-71a" id="bzT-Mf-pqX"/>
                         <outlet property="collectionView" destination="mh9-as-2c7" id="gJJ-3g-ks1"/>
+                        <outlet property="container" destination="vu7-K3-LGl" id="NBn-nQ-Pfy"/>
                         <outlet property="loading" destination="Wwx-CZ-lRf" id="gA6-hT-rHy"/>
                         <outlet property="loadingContainer" destination="EQk-82-trm" id="U2B-qm-UXr"/>
+                        <outlet property="utilBar" destination="isc-LF-CrM" id="lhe-eb-aHe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ltf-Cj-KiA" userLabel="First Responder" sceneMemberID="firstResponder"/>

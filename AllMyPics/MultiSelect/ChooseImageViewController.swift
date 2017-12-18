@@ -15,6 +15,8 @@ extension Notification.Name {
 
 class ChooseImageViewController: UIViewController {
 
+    @IBOutlet weak var container: UIView!
+    @IBOutlet weak var utilBar: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var loadingContainer: UIView!
@@ -26,6 +28,14 @@ class ChooseImageViewController: UIViewController {
 
     let cellReuseIdentifier = "GalleryImageCell"
     let cellXibName = "GalleryImageCollectionViewCell"
+
+
+    // colors:
+    var bg: UIColor = UIColor(hex: "1598a7")
+    var utilBarBG: UIColor = UIColor(hex: "0a3e44")
+    var buttonText: UIColor = UIColor(hex: "d7eef1")
+    var loadingBG: UIColor = UIColor(hex: "1598a7")
+    var loadingIndicator: UIColor = UIColor(hex: "d7eef1")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,6 +125,21 @@ class ChooseImageViewController: UIViewController {
 
     func style() {
         loadingContainer.layer.cornerRadius = loadingContainer.frame.height / 2
+        self.container.backgroundColor = bg
+        self.collectionView.backgroundColor = bg
+        self.utilBar.backgroundColor = utilBarBG
+        self.addButton.setTitleColor(buttonText, for: .normal)
+        self.cancelButton.setTitleColor(buttonText, for: .normal)
+        self.loadingContainer.backgroundColor = loadingBG
+        self.loading.color = loadingIndicator
+    }
+
+    func setColors(bg: UIColor, utilBarBG: UIColor, buttonText: UIColor, loadingBG: UIColor, loadingIndicator: UIColor) {
+        self.bg = bg
+        self.utilBarBG = utilBarBG
+        self.buttonText = buttonText
+        self.loadingBG = loadingBG
+        self.loadingIndicator = loadingIndicator
     }
 }
 
@@ -150,7 +175,7 @@ extension ChooseImageViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : GalleryImageCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! GalleryImageCollectionViewCell
 
-        cell.setUp(selectedIndexes: selectedIndexs, indexPath: indexPath, phAsset: images[indexPath.row])
+        cell.setUp(selectedIndexes: selectedIndexs, indexPath: indexPath, phAsset: images[indexPath.row], primaryColor: self.utilBar.backgroundColor!, textColor: addButton.titleColor(for: .normal)!)
 
         return cell
     }
