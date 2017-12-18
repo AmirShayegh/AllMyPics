@@ -34,10 +34,6 @@ class ViewController: UIViewController {
         updateImageResults()
     }
 
-    @IBAction func goToChoose(_ sender: Any) {
-       gotToGallery()
-    }
-
     func gotToGallery() {
         self.present(galleryManager.getVC(), animated: true, completion: nil)
     }
